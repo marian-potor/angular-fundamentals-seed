@@ -1,0 +1,50 @@
+<div class="dashboard-title">
+  <h1 [innerHTML] ="title"></h1>
+  {{ title }}
+</div>
+<div>
+  <input
+  type="text"
+  [value]="title" 
+  (input)="handleImput($event)"
+  >
+</div>
+<div>
+  <input
+  type="text"
+  [ngModel]="title"
+  (ngModelChange)="handleChange($event)"
+  >
+</div>
+<div>
+  <input
+  type="text"
+  [(ngModel)]="title"
+  >
+</div>
+<button (click)='handleClick()'>Reset title</button>
+<div *ngIf="title != defaultTitle">
+  Title changed to: {{title}}
+</div>
+<div>
+  <!-- template ref of variables username gets acces to it's node value everywear in the template -->
+  <input type="text" #username>
+  <button (click)="getValue(username.value)">Get Value</button>
+</div>
+<passenger-count 
+  [items]='passengerList'>
+</passenger-count>
+<passenger-detail
+  *ngFor="let passeenger of passengerList"
+  [detail]="passeenger">
+</passenger-detail>
+<h1>Passenger list</h1>
+<ul>
+  <li *ngFor="let passenger of passengerList; let i=index">
+    <!-- <span class="status" [class.checked-in]="passenger.checkedIn"></span> -->
+    <!-- or -->
+    <span class="status" [ngClass]="{'checked-in': passenger.checkedIn}"></span>
+    {{i+1}}: {{passenger.name}}
+  </li>
+</ul>
+

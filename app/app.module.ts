@@ -1,17 +1,20 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-
-import { AppComponent } from './app.component';
+import { CommonModule } from '@angular/common'; //for the directives we will use
+import { AppComponent } from './app.component'; //the component
+import { PassengerDashboardModule } from './passenger-dashboard/passenger-dashboard.module';
 
 @NgModule({
-  imports: [
-    BrowserModule
-  ],
-  bootstrap: [
-    AppComponent
-  ],
   declarations: [
-    AppComponent
-  ]
+    AppComponent      //list of components
+  ],
+  imports: [
+    //angular modules
+    CommonModule,
+    //custom modules
+    PassengerDashboardModule
+  ],
+  bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule {
+
+}

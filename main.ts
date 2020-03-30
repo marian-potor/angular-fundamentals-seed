@@ -1,4 +1,4 @@
-import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic'; //code needed to compile our app in the browser
 
 import { AppModule } from './app/app.module';
 
