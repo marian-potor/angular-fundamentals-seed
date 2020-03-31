@@ -1,3 +1,5 @@
+//used this file before creating json placeholder
+
 import { Passenger } from '../../models/passenger.interface';
 
 const passengerList: Passenger[] = [

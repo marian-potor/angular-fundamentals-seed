@@ -6,7 +6,7 @@
   <input
   type="text"
   [value]="title" 
-  (input)="handleImput($event)"
+  (input)="handleImput($event.target.value)"
   >
 </div>
 <div>
@@ -32,11 +32,15 @@
   <button (click)="getValue(username.value)">Get Value</button>
 </div>
 <passenger-count 
-  [items]='passengerList'>
+  [items]='passengerList'> 
 </passenger-count>
+<!-- passengerList does not exist initialy - comes from request -
+   the passenger-count component needs the safe navigation -->
 <passenger-detail
   *ngFor="let passeenger of passengerList"
-  [detail]="passeenger">
+  [detail]="passeenger"
+  (edit)="editPassenger($event)"
+  (remove)="removePassenger($event)">
 </passenger-detail>
 <h1>Passenger list</h1>
 <ul>

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnChanges } from '@angular/core';
 import { Passenger } from '../../models/passenger.interface';
 
 @Component({
@@ -12,7 +12,12 @@ import { Passenger } from '../../models/passenger.interface';
           <!-- equivalent to element.style.backgroundColor -->
           <!-- or -->
           <span class="status" [ngStyle]="{'backgroundColor': detail.checkedIn?'green':'blue'}"></span>
+          <div *ngIf="editing">
+            <input type="text" [value]="detail.name" (input)="onNameChange(name.value)" #name>
+          </div>
+          <div *ngIf="!editing">
             {{detail.id}}: {{detail.name}}
+          </div>
           <div>
             <!-- using angular pipes -->
             Check-in date: {{detail.checkedIn ? (detail.checkInDate | date: 'yMMMMd' | uppercase) : 'Not checked-in'}}
@@ -21,14 +26,44 @@ import { Passenger } from '../../models/passenger.interface';
             Children: {{detail.children?.length || 0}}
             <!--  ?-safe navigation operator-->
           </div>
+          <button (click)="toggleEditing()">{{ editing ? "Save" : "Edit" }}</button>
+          <button (click)="onRemove()">Remove</button>
         </li>
       </ul>
     </div>
   `
 })
 
-export class PassengerDetailComponent {
-@Input()  
-detail: Passenger;
-// index: number;
+export class PassengerDetailComponent implements OnChanges{
+  @Input()  
+  detail: Passenger;
+
+  @Output()
+  edit: EventEmitter<any> = new EventEmitter;
+
+  @Output()
+  remove: EventEmitter<any> = new EventEmitter;
+
+  constructor() {}
+
+  ngOnChanges(changes: any) {
+    if (changes.detail) {
+      this.detail = Object.assign({}, changes.detail.currentValue)
+    }
+  }
+
+  editing: boolean = false;
+  toggleEditing():void {
+    if (this.editing) {
+      this.edit.emit(this.detail)
+    }
+    this.editing = !this.editing;
+  }
+  onNameChange(name: string): void {
+    this.detail.name = name;
+  }
+  onRemove(): void {
+    this.remove.emit(this.detail);
+  }
+
 }
