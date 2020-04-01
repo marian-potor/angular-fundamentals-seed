@@ -13,7 +13,7 @@ export class PassengerDashboardComponent implements OnInit {
   passengerList: Passenger[];
   defaultTitle: string = 'Angular Project';
   title: string;
-  constructor(private passengerService: PassengerDashboardServices) {
+  constructor(private passengerService: PassengerDashboardServices) { //inject service as private pS
     // this is wat is happening in constructor(..): this.passengerService = PassengerDashboardServices; 
     this.title = this.defaultTitle;
   }

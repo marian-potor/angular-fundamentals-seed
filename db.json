@@ -5,14 +5,16 @@
       "name": "George",
       "checkedIn": true,
       "checkInDate": 1585563142050,
-      "children": null
+      "children": null,
+      "baggage": ""
     },
     {
       "id": 2,
       "name": "Andreea",
       "checkedIn": false,
       "checkInDate": null,
-      "children": null
+      "children": null,
+      "baggage": "hand-only"
     },
     {
       "id": 3,
@@ -28,14 +30,16 @@
           "name": "Bogdan",
           "age": 12
         }
-      ]
+      ],
+      "baggage": "hold-only"
     },
     {
       "id": 4,
       "name": "Alina",
       "checkedIn": true,
       "checkInDate": 1581653142050,
-      "children": null
+      "children": null,
+      "baggage": ""
     },
     {
       "id": 5,
@@ -47,7 +51,8 @@
           "name": "Patrick",
           "age": 4
         }
-      ]
+      ],
+      "baggage": ""
     }
   ]
 }

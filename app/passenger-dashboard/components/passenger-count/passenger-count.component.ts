@@ -15,7 +15,8 @@ import { Passenger } from '../../models/passenger.interface';
 
 export class PassengerCountComponent {
   @Input() //we use input to tell the component to expect props, in this case items
-  items: Passenger[]
+  items: Passenger[];
+  
   checkedInCount(): number {
     if(!this.items) return;
     return this.items.filter((passenger: Passenger) => passenger.checkedIn).length;

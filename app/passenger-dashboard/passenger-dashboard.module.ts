@@ -5,18 +5,22 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 //containers
 import { PassengerDashboardComponent } from './containers/passenger-dashboard/passenger-dashboard.component';
+import { PassengerViewerComponent } from './containers/passenger-viewer/passenger-viewer.component';
 //components
 import { PassengerCountComponent } from './components/passenger-count/passenger-count.component';
 import { PassengerDetailComponent } from './components/passenger-detail/passenger-detail.component';
 //services
 import { PassengerDashboardServices } from './passenger-dashboard.service';
+import { PassengerFormComponent } from './components/passenger-form/passenger-form.component';
 
 
 @NgModule({
   declarations: [
     PassengerDashboardComponent,
+    PassengerViewerComponent,
     PassengerDetailComponent,
-    PassengerCountComponent
+    PassengerCountComponent,
+    PassengerFormComponent
   ],
   imports: [
     CommonModule,
@@ -25,7 +29,8 @@ import { PassengerDashboardServices } from './passenger-dashboard.service';
     HttpModule
   ],
   exports: [
-    PassengerDashboardComponent
+    PassengerDashboardComponent,
+    PassengerViewerComponent
   ],
   providers: [PassengerDashboardServices] //services
 })
