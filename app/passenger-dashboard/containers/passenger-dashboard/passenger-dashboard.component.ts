@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Router } from '@angular/router';
 import { Passenger } from '../../models/passenger.interface';
 import { PassengerDashboardServices} from "../../passenger-dashboard.service";
 // import passengerList from './list';
@@ -13,7 +14,10 @@ export class PassengerDashboardComponent implements OnInit {
   passengerList: Passenger[];
   defaultTitle: string = 'Angular Project';
   title: string;
-  constructor(private passengerService: PassengerDashboardServices) { //inject service as private pS
+  constructor(
+    private router: Router, //inject router
+    private passengerService: PassengerDashboardServices
+    ) { //inject service as private pS
     // this is wat is happening in constructor(..): this.passengerService = PassengerDashboardServices; 
     this.title = this.defaultTitle;
   }
@@ -72,6 +76,9 @@ export class PassengerDashboardComponent implements OnInit {
         return passenger;
       });
     })
+  }
 
+  handleView(event: Passenger) {
+    this.router.navigate(['/passengers', event.id])
   }
 }

@@ -40,7 +40,8 @@
   *ngFor="let passeenger of passengerList"
   [detail]="passeenger"
   (edit)="editPassenger($event)"
-  (remove)="removePassenger($event)">
+  (remove)="removePassenger($event)"
+  (view)="handleView($event)">
 </passenger-detail>
 <h1>Passenger list</h1>
 <ul>

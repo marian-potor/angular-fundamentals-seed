@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser'; //for using in browse
 import { CommonModule } from '@angular/common'; //for the directives we will use
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { RouterModule, Routes } from '@angular/router';
 //containers
 import { PassengerDashboardComponent } from './containers/passenger-dashboard/passenger-dashboard.component';
 import { PassengerViewerComponent } from './containers/passenger-viewer/passenger-viewer.component';
@@ -13,6 +14,14 @@ import { PassengerDetailComponent } from './components/passenger-detail/passenge
 import { PassengerDashboardServices } from './passenger-dashboard.service';
 import { PassengerFormComponent } from './components/passenger-form/passenger-form.component';
 
+const routes: Routes = [{
+  path: 'passengers', 
+  // component: PassengerDashboardComponent // goes to this component on /passengers
+  children: [ //creates new tree after /passengers/
+    {path:'', component: PassengerDashboardComponent}, // renders main component on /passengers/
+    {path:':id', component: PassengerViewerComponent}  // renders ather components on /passengers/someId
+  ]
+}]
 
 @NgModule({
   declarations: [
@@ -26,12 +35,15 @@ import { PassengerFormComponent } from './components/passenger-form/passenger-fo
     CommonModule,
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    RouterModule.forChild(routes) //because this is a featured/child module
   ],
-  exports: [
-    PassengerDashboardComponent,
-    PassengerViewerComponent
-  ],
+  // exports: [
+  //   PassengerDashboardComponent,
+  //   PassengerViewerComponent
+  // ],
+  // don't need to exports because we are using routes module
+
   providers: [PassengerDashboardServices] //services
 })
 
